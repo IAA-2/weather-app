@@ -15,23 +15,30 @@ const CurrentWeather = ({ data }) => {
         />
       </div>
       <div className="flex items-center justify-between">
-        <p className="text-7xl">18°C</p>
+        <p className="text-7xl">{Math.round(data.main.temp)}°C</p>
         <div className="flex flex-col justify-between">
           <div className="flex flex-col">
             <span className="text-xs font-medium uppercase mr-2">Details</span>
-            <span className="text-xs">Feels like 22°C</span>
+            <div className="flex items-center">
+              <span className="text-xs font-medium uppercase mr-2">
+                Feels Like{' '}
+              </span>
+              <span className="text-xs">
+                {Math.round(data.main.feels_like)}°C
+              </span>
+            </div>
           </div>
           <div className="flex items-center">
             <span className="text-xs font-medium uppercase mr-2">Wind</span>
-            <span className="text-xs">2 m/s</span>
+            <span className="text-xs">{data.wind.speed} m/s</span>
           </div>
           <div className="flex items-center">
             <span className="text-xs font-medium uppercase mr-2">Humidity</span>
-            <span className="text-xs">15%</span>
+            <span className="text-xs">{data.main.humidity}%</span>
           </div>
           <div className="flex items-center">
             <span className="text-xs font-medium uppercase mr-2">Pressure</span>
-            <span className="text-xs">15 hPa</span>
+            <span className="text-xs">{data.main.pressure} hPa</span>
           </div>
         </div>
       </div>
