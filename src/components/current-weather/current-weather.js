@@ -1,14 +1,18 @@
 import React from 'react';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ data }) => {
   return (
     <div className="max-w-sm w-full bg-[#333] text-white rounded-lg shadow-xl p-6 my-5 mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <p className="text-xl font-semibold">Belgrade</p>
-          <p className="text-sm">Sunny</p>
+          <p className="text-xl font-semibold">{data.city}</p>
+          <p className="text-sm">{data.weather[0].description}</p>
         </div>
-        <img alt="weather" className="w-20" src="icons/01d.png" />
+        <img
+          alt="weather"
+          className="w-20"
+          src={`icons/${data.weather[0].icon}.png`}
+        />
       </div>
       <div className="flex items-center justify-between">
         <p className="text-7xl">18°C</p>
