@@ -2,49 +2,49 @@ import React from 'react';
 
 const CurrentWeather = ({ data }) => {
   return (
-    <div className="max-w-2xl w-full bg-[#2d2929] text-white rounded-lg shadow-2xl p-8 my-5 mx-auto relative overflow-hidden">
-      <div className="flex justify-between items-center mb-8">
+    <div className="max-w-sm w-full md:max-w-xl bg-[#2d2929] text-white rounded-lg shadow-2xl p-4 sm:p-8 my-8 mx-auto relative overflow-hidden">
+      <div className="flex justify-between items-center mb-4 sm:mb-8">
         <div>
-          <p className="text-2xl font-semibold">{data.city}</p>
-          <p className="text-base">{data.weather[0].description}</p>
+          <p className="text-xl sm:text-3xl font-semibold">{data.city}</p>
+          <p className="text-base sm:text-lg">{data.weather[0].description}</p>
         </div>
         <img
           alt="weather"
-          className="w-24 h-24"
+          className="w-20 h-20 sm:w-28 sm:h-28"
           src={`icons/${data.weather[0].icon}.png`}
         />
       </div>
-      <div className="flex items-center justify-between">
-        <p className="text-8xl">{Math.round(data.main.temp)}°C</p>
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-col">
-            <span className="text-medium font-extrabold uppercase mr-8 mt-10">
-              Details
-            </span>
-            <div className="flex items-center">
-              <span className="text-base font-lg uppercase mr-2">
+      <div className="flex flex-col sm:flex-row items-center justify-between">
+        <p className="text-6xl sm:text-9xl">{Math.round(data.main.temp)}°C</p>
+        <div className="flex flex-col">
+          <div className="text-sm sm:text-lg font-bold uppercase my-4 sm:my-2">
+            Details
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="flex flex-col items-start">
+              <span className="text-xs sm:text-sm font-semibold uppercase">
                 Feels Like
               </span>
-              <span className="text-sm">
-                {Math.round(data.main.feels_like)}°C
-              </span>
+              <span>{Math.round(data.main.feels_like)}°C</span>
             </div>
-          </div>
-          <div className="flex items-center">
-            <span className="text-base font-medium uppercase mr-2">Wind</span>
-            <span className="text-sm">{data.wind.speed} m/s</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-base font-medium uppercase mr-2">
-              Humidity
-            </span>
-            <span className="text-sm">{data.main.humidity}%</span>
-          </div>
-          <div className="flex items-center">
-            <span className="text-base font-medium uppercase mr-2">
-              Pressure
-            </span>
-            <span className="text-sm">{data.main.pressure} hPa</span>
+            <div className="flex flex-col items-start">
+              <span className="text-xs sm:text-sm font-semibold uppercase">
+                Wind
+              </span>
+              <span>{data.wind.speed} m/s</span>
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="text-xs sm:text-sm font-semibold uppercase">
+                Humidity
+              </span>
+              <span>{data.main.humidity}%</span>
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="text-xs sm:text-sm font-semibold uppercase">
+                Pressure
+              </span>
+              <span>{data.main.pressure} hPa</span>
+            </div>
           </div>
         </div>
       </div>
