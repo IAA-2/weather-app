@@ -5,6 +5,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel
 } from 'react-accessible-accordion';
+import "./forecast.css"
 
 const WEEK_DAYS = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
 
@@ -33,7 +34,34 @@ const Forecast = ({data}) => {
                                 </div>
                             </AccordionItemButton>
                         </AccordionItemHeading>
-                        <AccordionItemPanel></AccordionItemPanel>
+                        <AccordionItemPanel>
+                            <div className="daily-details-grid">
+                                <div className="daily-details-grid-item">
+                                    <label>Druck</label>
+                                    <label>{item.main.pressure}hPa</label>
+                                </div>
+                                <div className="daily-details-grid-item">
+                                    <label>Luftfeuchtigkeit</label>
+                                    <label>{item.main.humidity}%</label>
+                                </div>
+                                <div className="daily-details-grid-item">
+                                    <label>Wolken</label>
+                                    <label>{item.clouds.all}%</label>
+                                </div>
+                                <div className="daily-details-grid-item">
+                                    <label>Windgeschwindigkeit</label>
+                                    <label>{item.wind.speed} m/s</label>
+                                </div>
+                                <div className="daily-details-grid-item">
+                                    <label>M ü.M.</label>
+                                    <label>{item.main.sea_level}m</label>
+                                </div>
+                                <div className="daily-details-grid-item">
+                                    <label>Feels like</label>
+                                    <label>{Math.round(item.main.feels_like)}°C</label>
+                                </div>
+                            </div>
+                        </AccordionItemPanel>
                     </AccordionItem>
                 ))}
                 <AccordionItem></AccordionItem>
