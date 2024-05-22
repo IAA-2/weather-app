@@ -1,0 +1,8 @@
+.accordion-button {
+  transition: all 0.3s ease;
+}
+
+.accordion-panel {
+  background-color: #f0f4f8;
+  transition: all 0.3s ease-in-out;
+}
