@@ -23,25 +23,27 @@ const Forecast = ({ data }) => {
 
   return (
     <>
-      <label className="text-xl font-bold">Daily</label>
+      <label className="text-xl font-bold px-1 py-16">Daily</label>
       <Accordion allowZeroExpanded preExpanded={['0']}>
         {data.list.splice(0, 7).map((item, idx) => (
           <AccordionItem key={idx}>
             <AccordionItemHeading>
               <AccordionItemButton className="accordion-button">
-                <div className="rounded-full my-8 flex items-center cursor-pointer text-sm p-1 bg-white hover:border-blue-500 hover:border-1">
+                <div className="rounded-lg my-2 flex items-center cursor-pointer text-sm p-2 bg-white hover:border-blue-500 hover:border">
                   <img
                     alt="weather"
-                    className="w-12"
+                    className="w-12 h-12"
                     src={`icons/${item.weather[0].icon}.png`}
                   />
-                  <label className="text-black flex-1 font-semibold ml-4">
-                    {forecastDays[idx]}
-                  </label>
-                  <label className="flex-1 mr-4 text-right">
-                    {item.weather[0].description}
-                  </label>
-                  <label className="text-gray-500">
+                  <div className="flex flex-col flex-grow ml-4">
+                    <label className="text-black font-semibold">
+                      {forecastDays[idx]}
+                    </label>
+                    <label className="text-gray-700">
+                      {item.weather[0].description}
+                    </label>
+                  </div>
+                  <label className="text-gray-500 text-right">
                     {Math.round(item.main.temp_min)}°C /{' '}
                     {Math.round(item.main.temp_max)}°C
                   </label>
@@ -49,28 +51,28 @@ const Forecast = ({ data }) => {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel className="accordion-panel">
-              <div className="grid gap-4 grid-cols-2 p-4">
-                <div className="flex items-center justify-between">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                <div className="flex justify-between">
                   <label className="font-semibold">Druck</label>
-                  <label>{item.main.pressure}hPa</label>
+                  <label>{item.main.pressure} hPa</label>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <label className="font-semibold">Luftfeuchtigkeit</label>
                   <label>{item.main.humidity}%</label>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <label className="font-semibold">Wolken</label>
                   <label>{item.clouds.all}%</label>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <label className="font-semibold">Windgeschwindigkeit</label>
                   <label>{item.wind.speed} m/s</label>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <label className="font-semibold">M ü.M.</label>
                   <label>{item.main.sea_level}m</label>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <label className="font-semibold">Feels like</label>
                   <label>{Math.round(item.main.feels_like)}°C</label>
                 </div>
