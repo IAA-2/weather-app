@@ -1,26 +1,42 @@
 import React from 'react';
 import CurrentWeather from './components/current-weather/current-weather';
 import Search from './components/search/search';
-import Cloud1 from './Background/cloud-svgrepo-com (2).svg'; // Importiere deine SVG-Dateien hier
-import Cloud2 from './Background/cloud-svgrepo-com (2).svg';
-import Cloud3 from './Background/cloud-svgrepo-com (2).svg';
-import Cloud4 from './Background/cloud-svgrepo-com (2).svg';
-
+import Cloud from './Background/cloud-svgrepo-com.svg';
+ 
+const numberOfClouds = 10;
+ 
 function App() {
+  const clouds = Array.from({ length: numberOfClouds }, (_, index) => {
+    const topPosition = Math.random() * 100;
+    const animationDuration = 20 + Math.random() * 30;
+    const animationDelay = Math.random() * 20;
+ 
+    return (
+<img
+        key={index}
+        src={Cloud}
+        alt="Cloud"
+        className="cloud"
+        style={{
+          top: `${topPosition}%`,
+          animationDuration: `${animationDuration}s`,
+          animationDelay: `${animationDelay}s`,
+        }}
+      />
+    );
+  });
+ 
   return (
-    <div className="container">
-      <div className="background-with-clouds">
-        <img src={Cloud1} alt="Cloud" className="clouds" />
-        <img src={Cloud2} alt="Cloud" className="clouds" />
-        <img src={Cloud3} alt="Cloud" className="clouds" />
-        <img src={Cloud4} alt="Cloud" className="clouds" />
-      </div>
-      <div className="content">
-        <Search />
-        <CurrentWeather />
-      </div>
-    </div>
+<div className="container">
+<div className="background-with-clouds">
+        {clouds}
+</div>
+<div className="content">
+<Search />
+<CurrentWeather />
+</div>
+</div>
   );
 }
-
+ 
 export default App;

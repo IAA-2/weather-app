@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 body {
   margin: 0;
   font-family: 'Roboto', Arial, sans-serif !important;
@@ -10,53 +10,41 @@ body {
   overflow: hidden;
   background: linear-gradient(to bottom, #007ced 1%, #cce7ff 100%);
 }
-
+ 
 .container {
   max-width: 1080px;
   margin: 20px auto;
   height: 100vh;
   position: relative;
 }
-
-
+ 
 .background-with-clouds {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   top: 0;
   left: 0;
 }
 
-@keyframes moveBackground {
-  from {
-    left: 0;
+ 
+@keyframes moveCloud {
+  0% {
+    transform: translateX(-100%);
   }
-  to {
-    left: calc(100% - 5%);
+  100% {
+    transform: translateX(100%);
   }
 }
-
-.clouds {
-  width: 40%;
-  height: 70%;
-  object-fit: cover;
+ 
+.cloud {
   position: absolute;
-  top: 20px;
+  width: 100%;
+  height: 100px;
+  animation: moveCloud linear infinite;
   left: 0;
-  z-index: -1;
-  animation: moveBackground 20s linear infinite;
 }
 
-
-
-
-.cloud1 {
-  width: 30%; 
-  position: relative;
-  top: 20px;
-  left: 0px;
-}
-
+ 
 .content {
   position: relative;
   z-index: 1;
