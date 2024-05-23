@@ -2,20 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body,
+html {
   margin: 0;
+  padding: 0;
   font-family: 'Roboto', Arial, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
   background: linear-gradient(to bottom, #007ced 1%, #cce7ff 100%);
+  height: 100%;
+  overflow-y: auto;
 }
 
 .container {
   max-width: 1080px;
   margin: 20px auto;
-  height: 100vh;
   position: relative;
+  height: 100vh;
 }
 
 .background-with-clouds {
@@ -46,4 +49,5 @@ body {
 .content {
   position: relative;
   z-index: 1;
+  padding-bottom: 100px;
 }
