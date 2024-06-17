@@ -29,7 +29,7 @@ const Forecast = ({ data }) => {
           <AccordionItem key={idx}>
             <AccordionItemHeading>
               <AccordionItemButton className="accordion-button">
-                <div className="rounded-lg my-2 flex items-center cursor-pointer text-sm p-2 bg-white hover:border-blue-500 hover:border">
+                <div className="rounded-lg my-2 flex items-center cursor-pointer text-sm p-2 bg-white">
                   <img
                     alt="weather"
                     className="w-12 h-12"
