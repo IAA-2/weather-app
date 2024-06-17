@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { WEATHER_API_KEY, WEATHER_API_URL } from './api';
+import React, { useEffect, useState } from 'react';
+import {
+  GEO_API_URL,
+  geoApiOptions,
+  WEATHER_API_KEY,
+  WEATHER_API_URL,
+} from './api';
 import Cloud from './Background/cloud-svgrepo-com.svg';
 import CurrentWeather from './components/current-weather/current-weather';
 import Search from './components/search/search';
@@ -10,6 +15,32 @@ const amountClouds = 15;
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    const fetchRandomCityWeatherUI = async () => {
+      try {
+        const response = await fetch(
+          `${GEO_API_URL}/cities?minPopulation=100000`,
+          geoApiOptions
+        );
+        const data = await response.json();
+        const cities = data.data;
+
+        if (cities.length > 0) {
+          const randomCity = cities[Math.floor(Math.random() * cities.length)];
+          const searchData = {
+            label: `${randomCity.name}, ${randomCity.countryCode}`,
+            value: `${randomCity.latitude} ${randomCity.longitude}`,
+          };
+          handleOnSearchChange(searchData);
+        }
+      } catch (error) {
+        console.error('Error fetching random city:', error);
+      }
+    };
+
+    fetchRandomCityWeatherUI();
+  }, []);
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(' ');
