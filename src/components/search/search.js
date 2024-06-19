@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import { GEO_API_URL, geoApiOptions } from '../../api';
-import CloseIcon from '../background-Website/close-svgrepo-com.svg'
+import CloseIcon from '../Search Component Svg/close-svgrepo-com.svg';
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
   const [searchHistory, setSearchHistory] = useState([]);
- 
+
   useEffect(() => {
     const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     setSearchHistory(history);
   }, []);
- 
+
   const saveToHistory = (searchData) => {
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     history = [
@@ -23,14 +23,14 @@ const Search = ({ onSearchChange }) => {
     localStorage.setItem('searchHistory', JSON.stringify(history));
     setSearchHistory(history);
   };
- 
+
   const removeFromHistory = (searchData) => {
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     history = history.filter((item) => item.value !== searchData.value);
     localStorage.setItem('searchHistory', JSON.stringify(history));
     setSearchHistory(history);
   };
- 
+
   const loadOptions = async (inputValue) => {
     return fetch(
       `${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${inputValue}`,
@@ -47,13 +47,13 @@ const Search = ({ onSearchChange }) => {
       })
       .catch((err) => console.error(err));
   };
- 
+
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     saveToHistory(searchData);
     onSearchChange(searchData);
   };
- 
+
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -100,11 +100,11 @@ const Search = ({ onSearchChange }) => {
       transition: 'background-color 0.2s, color 0.2s',
     }),
   };
- 
+
   return (
     <div>
       <AsyncPaginate
-        placeholder="Search for city"
+        placeholder="Wählen Sie eine Stadt"
         debounceTimeout={600}
         value={search}
         onChange={handleOnChange}
@@ -136,5 +136,5 @@ const Search = ({ onSearchChange }) => {
     </div>
   );
 };
- 
+
 export default Search;
