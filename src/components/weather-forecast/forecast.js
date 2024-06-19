@@ -5,6 +5,7 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
+import './forecast.css'
 const WEEK_DAYS = [
   'Montag',
   'Dienstag',
