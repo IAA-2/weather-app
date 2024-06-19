@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import { GEO_API_URL, geoApiOptions } from '../../api';
-
+import CloseIcon from '../background-Website/close-svgrepo-com.svg'
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
   const [searchHistory, setSearchHistory] = useState([]);
-
+ 
   useEffect(() => {
     const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     setSearchHistory(history);
   }, []);
-
+ 
   const saveToHistory = (searchData) => {
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     history = [
@@ -23,14 +23,14 @@ const Search = ({ onSearchChange }) => {
     localStorage.setItem('searchHistory', JSON.stringify(history));
     setSearchHistory(history);
   };
-
+ 
   const removeFromHistory = (searchData) => {
     let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
     history = history.filter((item) => item.value !== searchData.value);
     localStorage.setItem('searchHistory', JSON.stringify(history));
     setSearchHistory(history);
   };
-
+ 
   const loadOptions = async (inputValue) => {
     return fetch(
       `${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${inputValue}`,
@@ -47,13 +47,13 @@ const Search = ({ onSearchChange }) => {
       })
       .catch((err) => console.error(err));
   };
-
+ 
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     saveToHistory(searchData);
     onSearchChange(searchData);
   };
-
+ 
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -66,7 +66,7 @@ const Search = ({ onSearchChange }) => {
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       padding: '0.25rem 0.5rem',
-      fontSize: '0.875rem', 
+      fontSize: '0.875rem',
       '@media (max-width: 768px)': {
         fontSize: '12px',
       },
@@ -100,7 +100,7 @@ const Search = ({ onSearchChange }) => {
       transition: 'background-color 0.2s, color 0.2s',
     }),
   };
-
+ 
   return (
     <div>
       <AsyncPaginate
@@ -114,21 +114,19 @@ const Search = ({ onSearchChange }) => {
       />
       {searchHistory.length > 0 && (
         <div className="mt-2 bg-white p-1 rounded-lg shadow-md">
-          <label className="text-xs font-semibold">Recent Searches:</label>
+          <label className="text-xs font-semibold">Letzte Suchanfragen:</label>
           <ul className="list-none">
             {searchHistory.map((item, index) => (
               <li
                 key={index}
                 className="flex justify-between items-center cursor-pointer hover:bg-blue-100 p-1 rounded-lg text-sm"
               >
-                <span onClick={() => handleOnChange(item)}>
-                  {item.label}
-                </span>
+                <span onClick={() => handleOnChange(item)}>{item.label}</span>
                 <button
-                  className="ml-2 text-xs text-red-500"
+                  className="ml-2"
                   onClick={() => removeFromHistory(item)}
                 >
-                  ×
+                  <img src={CloseIcon} alt="Remove" className="w-4 h-4" />
                 </button>
               </li>
             ))}
@@ -138,5 +136,5 @@ const Search = ({ onSearchChange }) => {
     </div>
   );
 };
-
+ 
 export default Search;
